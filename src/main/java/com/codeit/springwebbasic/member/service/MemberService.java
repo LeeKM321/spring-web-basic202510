@@ -19,14 +19,14 @@ public class MemberService {
     public Member createMember(MemberCreateRequestDto requestDto) {
 
         // 이메일 중복 체크
-        if (memberRepository.existsByEmail(requestDto.getEmail())) {
-            throw new IllegalArgumentException("이미 등록된 이메일 입니다: " + requestDto.getEmail());
+        if (memberRepository.existsByEmail(requestDto.email())) {
+            throw new IllegalArgumentException("이미 등록된 이메일 입니다: " + requestDto.email());
         }
 
         Member member = Member.builder()
-                .name(requestDto.getName())
-                .email(requestDto.getEmail())
-                .phone(requestDto.getPhone())
+                .name(requestDto.name())
+                .email(requestDto.email())
+                .phone(requestDto.phone())
                 .grade(MemberGrade.BRONZE)
                 .joinedAt(LocalDateTime.now())
                 .build();

@@ -1,5 +1,6 @@
 package com.codeit.springwebbasic.member.controller;
 
+import com.codeit.springwebbasic.common.dto.ApiResponse;
 import com.codeit.springwebbasic.member.dto.request.MemberCreateRequestDto;
 import com.codeit.springwebbasic.member.dto.response.MemberResponseDto;
 import com.codeit.springwebbasic.member.entity.Member;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/members")
+@RequestMapping("/api/v1/members")
 @RequiredArgsConstructor
 public class MemberController {
 
@@ -27,10 +28,13 @@ public class MemberController {
     // 응답: id, name, email, phone, grade, joinedAt
     // 상태 코드: 201 CREATED
     @PostMapping
-    public ResponseEntity<?> createMember(
+    public ResponseEntity<ApiResponse<MemberResponseDto>> createMember(
             @Valid @RequestBody MemberCreateRequestDto requestDto) {
         Member member = memberService.createMember(requestDto);
-        return new ResponseEntity<>(MemberResponseDto.from(member), HttpStatus.CREATED);
+
+        MemberResponseDto responseDto = MemberResponseDto.from(member);
+        ApiResponse<MemberResponseDto> response = ApiResponse.success(responseDto);
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
     // 회원 조회 (단일)
