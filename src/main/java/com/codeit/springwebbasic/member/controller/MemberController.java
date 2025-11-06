@@ -27,7 +27,7 @@ public class MemberController {
     // 응답: id, name, email, phone, grade, joinedAt
     // 상태 코드: 201 CREATED
     @PostMapping
-    public ResponseEntity<MemberResponseDto> createMember(
+    public ResponseEntity<?> createMember(
             @Valid @RequestBody MemberCreateRequestDto requestDto) {
         Member member = memberService.createMember(requestDto);
         return new ResponseEntity<>(MemberResponseDto.from(member), HttpStatus.CREATED);
