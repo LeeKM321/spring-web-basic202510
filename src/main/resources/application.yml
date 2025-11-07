@@ -4,3 +4,11 @@ spring:
 
 server:
   port: 8081
+
+logging:
+  level:
+    com.codeit.springwebbasic.common.log.LogExample: debug
+    org.springframework.web: warn
+
+  file:
+    name: /Users/stephen/Desktop/codeit-7th-develop/logs/app.log

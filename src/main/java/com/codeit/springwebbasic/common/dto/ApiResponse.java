@@ -1,6 +1,9 @@
 package com.codeit.springwebbasic.common.dto;
 
+import lombok.Getter;
+
 // 이제부터 모든 API의 응답은 이 형식을 따를 것이다.
+@Getter
 public class ApiResponse<T> {
 
     // 1. 공통 비즈니스 상태 코드
