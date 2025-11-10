@@ -41,7 +41,6 @@ public class MemberController implements MemberControllerDocs {
     @PostMapping
     public ResponseEntity<ApiResponse<MemberResponseDto>> createMember(
             @Valid @RequestBody MemberCreateRequestDto requestDto) {
-        log.info("/api/v1/members: POST, dto: {}", requestDto);
         MemberResponseDto responseDto = memberService.createMember(requestDto);
 
         ApiResponse<MemberResponseDto> response = ApiResponse.success(responseDto);
