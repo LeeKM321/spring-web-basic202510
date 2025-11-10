@@ -54,6 +54,7 @@ public class MemberController implements MemberControllerDocs {
     // 응답: 위에서 사용한 Response용 DTO로 응답 | 200 OK
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponse<MemberResponseDto>> getMember(@PathVariable Long id) {
+        log.info("/api/v1/members/{}: GET", id);
         MemberResponseDto member = memberService.getMember(id);
         return ResponseEntity
                 .status(HttpStatus.OK)
